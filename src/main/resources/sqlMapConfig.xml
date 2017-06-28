@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+<!-- 相当于 hibernate.cfg.xml  引入项目 所有的表-->
+  <!-- 配置settings   useStatementNamespaces="true" 开启命名空间-->
+  <settings lazyLoadingEnabled="true" useStatementNamespaces="true"/>
+  
+  
+  <!-- 配置sql映射文件-->
+ <sqlMap resource="mapping/SysUser.xml"/>  
+ <sqlMap resource="mapping/SysResource.xml"/>  
+  <sqlMap resource="mapping/SysResourceType.xml"/>  
+   <sqlMap resource="mapping/SysRole.xml"/>
+   <sqlMap resource="mapping/SysUserRole.xml"/>
+   <sqlMap resource="mapping/SysRoleResource.xml"/>
+</sqlMapConfig>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="userRole">
+	
+	<!-- 起别名 -->
+	<typeAlias alias="SysUserRole" type="org.gb.vo.SysUserRole"/>
+	
+	<!-- 起别名 -->
+	<typeAlias alias="SysUser" type="org.gb.vo.SysUser"/>
+ 	
+ 	<!-- 结果集 -->
+ 	<resultMap class="SysUserRole" id="resultMap">
+ 		<result property="sysUserId" column="sysuser_id"/>
+ 		<result property="sysRoleId" column="sysrole_id"/>
+ 	</resultMap>
+ 	
+ 	<!-- 字段 -->
+ 	<sql id="column_sql">
+ 		sysuser_id , sysrole_id
+ 	</sql>
+ 	
+
+ 	
+ 	
+</sqlMap>

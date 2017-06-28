@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- sqlMap 跟标签  namespace 命名空间，区别各个映射文件 
+任何标签的id都是唯一，简名知意
+推荐 SQL大写-->
+<sqlMap namespace="resource">
+	
+	<!-- 起别名 -->
+	<typeAlias alias="SysResource" type="org.gb.vo.SysResource"/>
+ 	
+ 	<!-- 结果集 -->
+ 	<resultMap class="SysResource" id="resultMap">
+ 		<result property="id" column="id"/>
+ 		<result property="name" column="name"/>
+ 		<result property="url" column="url"/>
+ 		<result property="description" column="description"/>
+ 		<result property="iconCls" column="iconCls"/>
+ 		<result property="seq" column="seq"/>
+ 		<result property="updatedatetime" column="updatedatetime"/>
+ 		<result property="createdatetime" column="createdatetime"/>
+ 		<result property="resourcetypeId" column="resourcetypeId"/>
+ 		<result property="pid" column="pid"/>
+ 		<result property="leafNode" column="leafNode"/>
+ 	</resultMap>
+ 	
+ 	<!-- 字段 -->
+ 	<sql id="column_sql">
+ 		id,name,url,description,iconCls,seq,updatedatetime,createdatetime,pid,resourcetypeId,leafNode
+ 	</sql>
+ 	
+ 	
+
+	
+	
+  			
+</sqlMap>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		
+		
+		
+		
+<!-- 自动扫描,完成bean创建和依赖注入 -->
+ <context:component-scan base-package="org.gb.*.controller" />
+ 
+<!--<mvc:annotation-driven /> 是一种简写，其实是给 Spring 容器中注入了两个 Bean ，
+      分别是： DefaultAnnotationHandlerMapping 和AnnotationMethodHandlerAdapter 。 
+      @DateTimeFormat 注解的内部需要使用到前面注入的两个 bean 去处理 -->
+<mvc:annotation-driven /> 
+	
+
+   
+	<!-- 视图解析器  设置返回页面的路径 和后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+	    <property name="prefix" value="/WEB-INF/view/" />  
+	    <property name="suffix" value=".jsp" />  
+	</bean> 
+
+
+
+	<!--  上传设置 CommonsMultipartResolver 通用组件解析器    -->
+	 <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <!-- 设置上传文件的最大尺寸为1MB 1048576 -->     
+        <property name="maxUploadSize" value="104857600" />
+        <property name="resolveLazily" value="true"/>  
+        <property  name="maxInMemorySize" value="4096"/>  
+    </bean> 
+<!--     
+    自定义拦截器
+    <mvc:interceptors>下直接配置bean 拦截所有请求 
+    <mvc:interceptors>
+    	配置自定义的拦截器的类
+    	<bean class="org.jk.interceptors.LoginInterceptor"></bean>
+    </mvc:interceptors> -->
+    
+<!--     
+    可以配置多个自定义拦截器 
+    <mvc:interceptors>
+    	登录拦截器
+    	<mvc:interceptor>
+    		<mvc:mapping path="/**" />
+    		<bean class="org.jk.interceptors.LoginInterceptor">
+    			登录拦截器不拦截的url请求
+    			<property name="excludeUrls">
+    				<list>
+    					<value>/user/checkSysUserLogin.do</value>用户登录
+						<value>/user/registerSysUser.do</value>用户注册 
+						<value>/user/checkSysUser.do</value>用户注册时是否重名 
+    				</list>
+    			</property>
+    			<property name="map">
+    				<map>
+    					<entry key="" key-ref="">
+    						<value></value>
+    					</entry>
+    				</map>
+    			</property>    		
+ 			</bean>
+    	</mvc:interceptor>
+    	
+    	权限拦截器
+    	<mvc:interceptor>
+    		<mvc:mapping path="/**"/>
+    		<bean class="org.jk.interceptors.AuthorityInterceptor">
+    			登录拦截器不拦截的url请求
+    			<property name="excludeUrls">
+    				<list>
+    					<value>/user/checkSysUserLogin.do</value>用户登录
+						<value>/user/registerSysUser.do</value>用户注册 
+						<value>/user/checkSysUser.do</value>用户注册时是否重名 
+    				</list>
+    			</property>
+    		</bean>
+    	</mvc:interceptor>
+    </mvc:interceptors> -->
+    
+    
+ 
+</beans>
