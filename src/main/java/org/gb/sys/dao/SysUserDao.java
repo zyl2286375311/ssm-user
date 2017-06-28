@@ -24,4 +24,5 @@ public interface SysUserDao {
 	 * @return
 	 */
 	SysUser checkSysUser(SysUser user);
+    List<SysUserRole> selectUserRoleList(SysUser user);
 }

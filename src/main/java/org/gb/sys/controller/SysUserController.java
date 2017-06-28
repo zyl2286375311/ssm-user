@@ -6,8 +6,12 @@ import org.gb.util.ConfigUtil;
 import org.gb.util.MD5Util;
 import org.gb.util.PageUtil;
 import org.gb.util.ReturnJson;
+import org.gb.util.ReturnJson;
+import org.gb.vo.SysRole;
 import org.gb.vo.SysUser;
 import org.gb.vo.business.SessionInfo;
+import org.gb.vo.SysUserRole;
+import org.gb.vo.business.Tree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -128,6 +134,54 @@ public class SysUserController {
             }
         }
         return rj;
+    }
+
+
+    //用户授予角色，分配角色
+    @RequestMapping(value="grantRoleOfUser",method= RequestMethod.POST)
+    @ResponseBody
+    public ReturnJson grantRoleOfUser(SysUser user){
+        userService.updateRoleOfUser(user);
+        return new ReturnJson(true, "修改角色成功",null);
+    }
+
+    /**
+     * 根据用户id查询拥有的角色信息
+     * @param user
+     */
+    @RequestMapping(value="getUserRoleInfo",method=RequestMethod.POST)
+    @ResponseBody
+    public List<SysUserRole> getUserRoleInfo(SysUser user){
+
+        List<SysUserRole> userRoleList =  userService.selectUserRoleList(user);
+
+
+        return userRoleList;
+    }
+
+
+    /**
+     * 查询角色tree
+     * @return
+     */
+    @RequestMapping(value="getRoleTree",method=RequestMethod.POST)
+    @ResponseBody
+    public List<Tree> getRoleTree(){
+        List<SysRole> roleList =  userService.getRoleTree();
+
+        List<Tree> treeList = new ArrayList<>();
+
+        Tree t = null;
+
+        for (SysRole role : roleList) {
+            t = new Tree();
+            t.setId(role.getId());
+            t.setText(role.getName());
+            treeList.add(t);
+        }
+
+
+        return treeList;
     }
 
     /**
