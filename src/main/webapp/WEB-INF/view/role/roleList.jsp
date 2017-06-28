@@ -33,11 +33,11 @@
 	
 	<!-- 修改 资源   dialog -->
 	<div id="updateResourceDialog" style="display:none">
-			<fieldset>
-				<legend>修改角色授权</legend>
-				<ul name="resourceTree"></ul>
-			</fieldset>
-		</div>
+		<fieldset>
+			<legend>修改角色授权</legend>
+			<ul name="resourceTree"></ul>
+		</fieldset>
+	</div>
 
 
 </body>
