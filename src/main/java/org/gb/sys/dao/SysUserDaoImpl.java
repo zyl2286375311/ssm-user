@@ -33,5 +33,12 @@ public class SysUserDaoImpl extends SqlMapClientDaoSupport implements SysUserDao
 		userPage.setTotalCount(totalCount);
 		userPage.setList(userList);
 		return userPage;
+
+
+	}
+
+	@Override
+	public List<SysUserRole> selectUserRoleList(SysUser user) {
+		return this.getSqlMapClientTemplate().queryForList("userRole.getUserRoleList",user);
 	}
 }

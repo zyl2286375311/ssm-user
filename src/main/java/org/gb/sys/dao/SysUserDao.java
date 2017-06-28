@@ -13,4 +13,5 @@ public interface SysUserDao {
 	PageUtil<SysUser> selectUserList(PageUtil<SysUser> userPage);
 
 
+    List<SysUserRole> selectUserRoleList(SysUser user);
 }

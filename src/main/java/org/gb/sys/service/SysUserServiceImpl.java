@@ -30,6 +30,50 @@ public class SysUserServiceImpl implements SysUserService {
 	private SysUserRoleService userRoleService;
 
 
+
+
+
+	@Override
+	public void updateRoleOfUser(SysUser user) {
+
+		//根据用户ID删除之前的角色信息--- 删除  用户角色关联关系表
+
+		int x =	userRoleService.deleteUserRoleByUserId(user);
+
+
+		//将用户重新授予角色信息 添加 到  用户角色关联关系表
+
+		String[] split = user.getRoleIds().split(",");
+
+		List<SysUserRole>  userRoleList = new ArrayList<>();
+		SysUserRole ur = null;
+		for (int i = 0; i < split.length; i++) {
+			ur = new SysUserRole();
+			ur.setSysUserId(user.getId());
+			ur.setSysRoleId(split[i]);
+			userRoleList.add(ur);
+		}
+
+		userRoleService.insertUserRoleList(userRoleList);
+
+	}
+
+	@Override
+	public List<SysUserRole> selectUserRoleList(SysUser user) {
+		return userDao.selectUserRoleList(user);
+	}
+
+
+	@Override
+	public List<SysRole> getRoleTree() {
+
+		List<SysRole> roleTreeList = roleService.getRoleTree();
+
+
+
+		return roleTreeList;
+	}
+
 	@Override
 	public PageUtil<SysUser> selectUserList(PageUtil<SysUser> userPage) {
 		return userDao.selectUserList(userPage);
