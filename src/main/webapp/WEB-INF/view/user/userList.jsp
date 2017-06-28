@@ -31,7 +31,38 @@
 			<ul id="roleTree"></ul>
 		</fieldset>
 	</div>
-	
+	<script type="text/javascript">
+        <!--页面加载时 查询userlist集合 -->
+        $(function(){
+            $("#userDataGrid").datagrid({
+                url:'<%=request.getContextPath()%>/user/selectUserList.do',
+                method:'post',
+                pagination:true,
+                rownumbers:true,
+                pageNumber:1,
+                pageSize:2,
+                pageList:[2,4,6,8],
+                striped : true,
+                rownumbers : true,
+                pagination : true,
+                singleSelect : true,
+                idField : 'id',
+                loadMsg:'候着。。。',
+                toolbar: '#tb',
+                columns:[
+                    [
+                        {field:'id',title:'ID',width:120},
+                        {field:'loginname',title:'账户名',width:120},
+                        {field:'name',title:'真实名',width:120},
+                        {field:'createdatetime',title:'创建时间',width:120},
+                        {field:'updatedatetime',title:'修改时间',width:120},
+                    ]
+                ]
+            });
+        });
+
+
+	</script>
 
 </body>
 </html>
