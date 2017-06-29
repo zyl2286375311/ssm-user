@@ -22,17 +22,26 @@
  		<result property="createdatetime" column="createdatetime"/>
  		<result property="resourcetypeId" column="resourcetypeId"/>
  		<result property="pid" column="pid"/>
- 		<result property="leafNode" column="leafNode"/>
  	</resultMap>
- 	
- 	<!-- 字段 -->
- 	<sql id="column_sql">
- 		id,name,url,description,iconCls,seq,updatedatetime,createdatetime,pid,resourcetypeId,leafNode
- 	</sql>
- 	
- 	
 
-	
-	
-  			
+	<!-- 字段 -->
+	<sql id="column_sql">
+ 		id,name,url,description,iconCls,seq,updatedatetime,createdatetime,pid,resourcetypeId
+ 	</sql>
+
+	<!-- 查询菜单url资源 tree -->
+	<select id="selectResourceTree" resultMap="resultMap" parameterClass="SysResource" >
+		select  <include refid="column_sql"/>
+		from t_sysresource_info
+		<dynamic prepend="where">
+			<isNotEmpty property="resourcetypeId"  prepend="and">
+				resourcetypeId = #resourcetypeId#;
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+
+
+
+
 </sqlMap>

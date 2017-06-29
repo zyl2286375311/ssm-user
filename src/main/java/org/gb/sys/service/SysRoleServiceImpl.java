@@ -19,9 +19,16 @@ public class SysRoleServiceImpl implements SysRoleService {
 
 	@Autowired
 	private SysRoleDao sysRoleDao;
+@Override
+    public PageUtil<SysRole> selectRoleList(PageUtil<SysRole> rolePage) {
+    	return null;
+    }
 
 	@Override
 	public List<SysRole> getRoleTree() {
+
+
+
 
 		List<SysRole> roleList = sysRoleDao.getRoleTree();
 
