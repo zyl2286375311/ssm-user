@@ -13,7 +13,6 @@ public class SysUser implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = -8102542876644062334L;
 
-
 	/* long
 	 *  String 
 	 * UUID随机字符串
@@ -30,6 +29,9 @@ public class SysUser implements java.io.Serializable {
 	private Integer sex;
 	private Integer age;
 	private String photo;
+	//手机验证码 业务字段
+	private String phone;
+	private String phoneCode;
 	
 	
 	// 此属性是业务字段不存数据库，虚拟属性
@@ -40,6 +42,26 @@ public class SysUser implements java.io.Serializable {
 	
 	//验证码
 	private String imgcode;
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getPhoneCode() {
+		return phoneCode;
+	}
+
+	public void setPhoneCode(String phoneCode) {
+		this.phoneCode = phoneCode;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public String getRoleIds() {
 		return roleIds;

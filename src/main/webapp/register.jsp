@@ -27,46 +27,71 @@
   border-radius: 5px 5px 5px 5px;
 }
 
-
-
-
-
-
 </style>
 </head>
 <body>
 	<div id="registerDialog" style="display:none;">
 		<form id="registerForm" class="easyui-form">
-			     <div>   
-        <label for="loginname">账户名称:</label>   
-        <input class="easyui-validatebox" type="text" name="loginname"  onblur="checkLoginName(this.value)"
-               data-options="required:true" id = "loginname"/>
-    </div>   
-    <div>   
-        <label for="pwd">账户密码:</label>   
-        <input class="easyui-validatebox" type="password" id="pwd" name="pwd" 
-        data-options="required:true,validType:'length[6,18]'"    />   
-    </div>   
-    <div>   
-       <label for="pwd2">确认密码:</label>   
-       <input class="easyui-validatebox" type="password" name="pwd2" id="pwd2"
-       data-options="required:true"  validType="equals['#pwd']"/>
-   	 </div>   
-    <div>
-	    	<label>验证码:</label>
-	    	<input  class="easyui-validatebox"  data-options="required:true" name="imgcode"   type="text" id="imgcode" style="width:60px"/>
-	    	<img src="<%=request.getContextPath()%>/imageCode" id="imgcoode">
-	   		<input class="l-btn" value="看不清换一个" type="button" onclick="getImageCode(this)"/> 
-	   	</div>
-	</form>
-</div>
+            <div>
+                <label for="loginname">账户名称:</label>
+                <input class="easyui-validatebox" type="text" name="loginname"  onblur="checkLoginName(this.value)"
+                       data-options="required:true" id = "loginname"/>
+            </div>
 
-	
+            <div>
+                <label for="pwd">账户密码:</label>
+                <input class="easyui-validatebox" type="password" id="pwd" name="pwd"
+                data-options="required:true,validType:'length[6,18]'"/>
+            </div>
+
+            <div>
+               <label for="pwd2">确认密码:</label>
+               <input class="easyui-validatebox" type="password" name="pwd2" id="pwd2"
+               data-options="required:true"  validType="equals['#pwd']"/>
+            </div>
+
+            <%--<div>
+                <label for="imgcoode">验证码:</label>
+                <input  class="easyui-validatebox"  data-options="required:true" name="imgcode"
+                        type="text" id="imgcode" style="width:60px"/>
+                <img src="<%=request.getContextPath()%>/imageCode" id="imgcoode">
+                <input class="l-btn" value="看不清换一个" type="button" onclick="getImageCode(this)"/>
+            </div>--%>
+
+            <div>
+                <label for="phone">手机号:</label>
+                <input  class="easyui-validatebox"  data-options="required:true" name="phone"
+                        type="text" id="phone" style="width:60px"/>
+            </div>
+
+            <div>
+                <label for="phoneCode">手机验证码:</label>
+                <input  class="easyui-validatebox"  data-options="required:true" name="phoneCode"
+                        type="text" id="phoneCode" style="width:60px"/>
+                <input type="button"  id="btn" value="发送验证码"/>
+            </div>
+        </form>
+    </div>
+
 	<!--  
 		键盘按下事件 onkeydown onkeypress
 		验证码转换大小写
 	 -->
-	<script type="text/javascript">
+<script type="text/javascript">
+
+    //发送手机验证码
+    $(function () {
+        $('#btn').click(function () {
+            $.post(
+                "<%=request.getContextPath()%>/user/postPhone.do",
+                $("#registerForm").serialize(),
+                function(){
+                }
+            );
+        })
+    })
+
+    //验证登陆信息
 	function checkLoginName(value){
 		var flag = null;
 		$.ajax({
@@ -233,7 +258,7 @@
         }
     })
 
-	</script>
+</script>
 	
 	
 </body>

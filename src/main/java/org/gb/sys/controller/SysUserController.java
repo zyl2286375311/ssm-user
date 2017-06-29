@@ -2,10 +2,7 @@ package org.gb.sys.controller;
 
 
 import org.gb.sys.service.SysUserService;
-import org.gb.util.ConfigUtil;
-import org.gb.util.MD5Util;
-import org.gb.util.PageUtil;
-import org.gb.util.ReturnJson;
+import org.gb.util.*;
 import org.gb.util.ReturnJson;
 import org.gb.vo.SysRole;
 import org.gb.vo.SysUser;
@@ -120,6 +117,7 @@ public class SysUserController {
         ReturnJson rj = new ReturnJson();
         //获取session中的验证码
         String code = (String) request.getSession().getAttribute("imageCode");
+        //String code = JuheDemo.GetPhoneCode(phone);
         //校验验证码是否正确
         if (null != sysUser && !"".equals(sysUser.getImgcode().trim()) && !"".equals(code)) {
             //验证码正确---不区分大小写
@@ -136,6 +134,15 @@ public class SysUserController {
         return rj;
     }
 
+    /**
+     * 发送短信验证码
+     * @param phone
+     */
+    @RequestMapping(value = "postPhone", method = RequestMethod.POST)
+    @ResponseBody
+    public void postPhone(SysUser phone){
+        JuheDemo.postPhone(phone);
+    }
 
     //用户授予角色，分配角色
     @RequestMapping(value="grantRoleOfUser",method= RequestMethod.POST)
