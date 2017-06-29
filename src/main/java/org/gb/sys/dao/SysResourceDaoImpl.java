@@ -34,6 +34,17 @@ public class SysResourceDaoImpl extends BaseDao implements SysResourceDao {
     }
 
 
+
+    @Override
+    public List<SysResource> selectResourceByUserId(String userId) {
+        return this.getSqlMapClientTemplate().queryForList("resource.selectResourceByUserId", userId);
+    }
+
+
+
+
+
+
     @Override
     public List<SysResource> selectMainMenu(String userId) {
 //		resourcetypeId 为 "0"
@@ -45,4 +56,3 @@ public class SysResourceDaoImpl extends BaseDao implements SysResourceDao {
         return getSqlMapClientTemplate().queryForList("resource.selectMainMenu",map);
     }
 }
-
