@@ -31,7 +31,14 @@
  	
  	
  	
+ 	<select id="selectUserCount" resultClass="java.lang.Integer" >
+ 		select count(1) from t_sysuser_info
+ 	</select>
 
+ 	<select id="selectUserList" resultMap="resultMap" >
+		select  <include refid="column_sql"/>
+		from t_sysuser_info
+	</select>
 
 
 

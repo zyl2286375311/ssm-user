@@ -11,5 +11,7 @@ public interface SysResourceDao {
 
     List<SysResource> getResourceTree();
 
+    List<SysResource> selectMainMenu(String userId);
+
     List<SysResource> selectResourceByUserId(String userId);
 }
