@@ -10,8 +10,7 @@ public interface SysResourceService {
 
     List<SysResource> getResourceTree();
 
-    List<SysResource> selectResourceByUserId(String userId);
-
-    //根据用户id
     List<Tree> selectMainMenu(String userId);
+
+    List<SysResource> selectResourceByUserId(String userId);
 }
