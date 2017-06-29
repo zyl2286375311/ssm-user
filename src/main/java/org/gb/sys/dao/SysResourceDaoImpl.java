@@ -12,6 +12,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SysResourceDaoImpl extends BaseDao implements SysResourceDao {
 
+
+
+    @Override
+    public List<SysResource> selectResourceList(String id) {
+        SysResource resource = new SysResource();
+        resource.setPid(id);
+        return this.getSqlMapClientTemplate().queryForList("resource.selectResourceList",resource);
+    }
+
+
+    @Override
+    public List<SysResource> selectResourceByUserId(String userId) {
+        return this.getSqlMapClientTemplate().queryForList("resource.selectResourceByUserId", userId);
+    }
+
     @Override
     public List<SysResource> getResourceTree() {
         SysResource resource = new SysResource();

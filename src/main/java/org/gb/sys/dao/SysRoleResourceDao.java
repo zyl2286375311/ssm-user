@@ -11,4 +11,8 @@ public interface SysRoleResourceDao {
 
 
     List<SysRoleResource> getResourceByRoleId(SysRole role);
+
+    void insertRoleResourceList(List<SysRoleResource> roleResourceList);
+
+    int deleteRoleResourceByRoleId(String sysRoleId);
 }

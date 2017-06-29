@@ -53,41 +53,41 @@
     <!--可以配置多个自定义拦截器 -->
     <mvc:interceptors>
     	<!--登录拦截器-->
-    	<mvc:interceptor>
+    	<!--<mvc:interceptor>
     		<mvc:mapping path="/**" />
     		<bean class="org.gb.interceptors.LoginInterceptor">
-    			<!--登录拦截器不拦截的url请求-->
+    			&lt;!&ndash;登录拦截器不拦截的url请求&ndash;&gt;
     			<property name="excludeUrls">
     				<list>
-    					<value>/user/checkSysUserLogin.do</value><!--用户登录-->
-						<value>/user/registerSysUser.do</value><!--用户注册 -->
-						<value>/user/checkSysUser.do</value><!--用户注册时是否重名 -->
+    					<value>/user/checkSysUserLogin.do</value>&lt;!&ndash;用户登录&ndash;&gt;
+						<value>/user/registerSysUser.do</value>&lt;!&ndash;用户注册 &ndash;&gt;
+						<value>/user/checkSysUser.do</value>&lt;!&ndash;用户注册时是否重名 &ndash;&gt;
     				</list>
     			</property>
-    			<!--<property name="map">
+    			&lt;!&ndash;<property name="map">
     				<map>
     					<entry key="" key-ref="">
     						<value></value>
     					</entry>
     				</map>
-    			</property>    		-->
+    			</property>    		&ndash;&gt;
  			</bean>
-    	</mvc:interceptor>
+    	</mvc:interceptor>-->
     	
     	<!--权限拦截器-->
-    	<mvc:interceptor>
+    	<!--<mvc:interceptor>
     		<mvc:mapping path="/**"/>
     		<bean class="org.gb.interceptors.AuthorityInterceptor">
-    			<!--登录拦截器不拦截的url请求-->
+    			&lt;!&ndash;登录拦截器不拦截的url请求&ndash;&gt;
     			<property name="excludeUrls">
     				<list>
-    					<value>/user/checkSysUserLogin.do</value><!--用户登录-->
-						<value>/user/registerSysUser.do</value><!--用户注册-->
-						<value>/user/checkSysUser.do</value><!--用户注册时是否重名 -->
+    					<value>/user/checkSysUserLogin.do</value>&lt;!&ndash;用户登录&ndash;&gt;
+						<value>/user/registerSysUser.do</value>&lt;!&ndash;用户注册&ndash;&gt;
+						<value>/user/checkSysUser.do</value>&lt;!&ndash;用户注册时是否重名 &ndash;&gt;
     				</list>
     			</property>
     		</bean>
-    	</mvc:interceptor>
+    	</mvc:interceptor>-->
     </mvc:interceptors>
     
     

@@ -11,4 +11,6 @@ public interface SysRoleResourceService {
 
 
     List<SysRoleResource> getResourceByRoleId(SysRole role);
+
+    void updateResourceOfRole(SysRoleResource roleResource);
 }

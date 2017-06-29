@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.gb.sys.dao.SysResourceDao;
 import org.gb.vo.SysResource;
+import org.gb.vo.SysResourceType;
 import org.gb.vo.business.Tree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,39 @@ public class SysResourceServiceImpl implements SysResourceService {
 	
 	@Autowired
 	private SysResourceDao resourceDao;
+
+
+	@Override
+	public List<SysResource> selectResourceList(String  id) {
+
+		List<SysResource> selectResourceList = resourceDao.selectResourceList(id);
+
+
+
+		return selectResourceList;
+	}
+
+
+	@Override
+	public void addResrouce(SysResource resource) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<SysResource> selectResourceByUserId(String userId) {
+		List<SysResource> resourceList =  resourceDao.selectResourceByUserId(userId);
+		//去重
+		resourceList = new ArrayList<>(new HashSet<>(resourceList));
+		return resourceList;
+	}
+
+
+	@Override
+	public List<SysResourceType> selectResourceTypeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 

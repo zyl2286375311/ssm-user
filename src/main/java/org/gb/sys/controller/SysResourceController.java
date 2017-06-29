@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.gb.sys.service.SysResourceService;
 import org.gb.sys.service.SysRoleResourceService;
 import org.gb.util.ConfigUtil;
+import org.gb.util.ReturnJson;
 import org.gb.vo.SysResource;
+import org.gb.vo.SysResourceType;
 import org.gb.vo.SysRole;
 import org.gb.vo.SysRoleResource;
 import org.gb.vo.business.SessionInfo;
@@ -33,6 +35,73 @@ public class SysResourceController {
 	
 	@Autowired
 	private SysRoleResourceService roleResourceService;
+
+
+	/**
+	 *查询资源类型
+	 */
+	@RequestMapping(value="selectResourceTypeList")
+	@ResponseBody
+	public List<SysResourceType> selectResourceTypeList(){
+		return resourceService.selectResourceTypeList();
+	}
+
+
+	/**
+	 *  addResource 新增
+	 * @return
+	 */
+	@RequestMapping(value="addResource",method=RequestMethod.POST)
+	@ResponseBody
+	public  ReturnJson addResource(SysResource resource){
+		resourceService.addResrouce(resource);
+		return new ReturnJson(true,"添加成功",null);
+	}
+
+	/**
+	 * 跳转到 addResource.jsp
+	 * @return
+	 */
+	@RequestMapping(value="toAddResource")
+	public ModelAndView toAddResource(){
+		return new ModelAndView("resource/addResource");
+	}
+
+	@RequestMapping(value="selectResourceList",method=RequestMethod.POST)
+	@ResponseBody
+	public List<SysResource> selectResourceList(String id){
+		//查询list集合
+		List<SysResource> resourceList = 	resourceService.selectResourceList(id);
+		return resourceList;
+	}
+
+	/**
+	 * 跳转到 resourceList.jsp
+	 * @return
+	 */
+	@RequestMapping("toResourceList")
+	public ModelAndView toResourceList(){
+		return new ModelAndView("resource/resourceList");
+	}
+
+	/**
+	 *  授予权限/修改权限
+	 *  1.根据角色id删除 角色权限信息
+	 *  2.添加 重新授予的 角色权限信息
+	 * @param roleResource
+	 * @return
+	 */
+	@RequestMapping(value="grantResourceOfRole",method=RequestMethod.POST)
+	@ResponseBody
+	public ReturnJson grantResourceOfRole(SysRoleResource roleResource){
+
+		roleResourceService.updateResourceOfRole(roleResource);
+
+		return new ReturnJson(true, "授予权限成功", null);
+	}
+
+
+
 
 	/**
 	 * 根据角色id查询拥有的权限资源list

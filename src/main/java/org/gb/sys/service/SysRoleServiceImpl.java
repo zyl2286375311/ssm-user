@@ -22,7 +22,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 
 	@Override
     public PageUtil<SysRole> selectRoleList(PageUtil<SysRole> rolePage) {
-    	return null;
+    	return sysRoleDao.selectRoleList(rolePage);
     }
 
 	@Override
