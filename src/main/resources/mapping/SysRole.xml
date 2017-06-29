@@ -32,7 +32,33 @@
 		select <include refid="column_sql"/> from
 		t_sysrole_info
 	</select>
- 	
 
-  			
+
+	<!-- 拼接查询条件 -->
+	<sql id="whereSql">
+		<dynamic prepend="where">
+			<isNotEmpty property="whereMap.roleName" prepend="and">
+				name like '%$whereMap.roleName$%'
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+
+	<!--分页条件查询角色 的条数 -->
+	<select id="selectRoleListCount"  resultClass="java.lang.Integer"   parameterClass="org.gb.util.PageUtil">
+		select count(1) from
+		t_sysrole_info
+		<include refid="whereSql"/>
+	</select>
+
+
+
+	<!-- 分页条件查询角色 的list集合  -->
+	<select id="selectRoleListPage" resultMap="resultMap" parameterClass="org.gb.util.PageUtil" >
+		select <include refid="column_sql"/> from
+		t_sysrole_info
+		<include refid="whereSql"/>
+		limit #start#,#pageSize#
+	</select>
+
 </sqlMap>

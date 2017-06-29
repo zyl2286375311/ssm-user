@@ -3,6 +3,7 @@ package org.gb.sys.service;
 
 
 import org.gb.sys.dao.SysRoleDao;
+import org.gb.util.PageUtil;
 import org.gb.vo.SysRole;
 import org.gb.vo.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,13 @@ public class SysRoleServiceImpl implements SysRoleService {
 		});
 		return roleList;
 	}
+
+	@Override
+	public PageUtil<SysRole> selectRoleList(PageUtil<SysRole> rolePage) {
+		return sysRoleDao.selectRoleList(rolePage);
+	}
+
+
+
+
 }
