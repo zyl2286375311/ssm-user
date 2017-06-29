@@ -11,7 +11,7 @@
 
 	<div class="easyui-panel">
 		<form id="addResource" method="post">
-
+			<table>
 			</table>
 		</form>
 	</div>
