@@ -34,32 +34,32 @@
  	<select id="selectUserCount" resultClass="java.lang.Integer" >
  		select count(1) from t_sysuser_info
  	</select>
-
+ 	
  	<select id="selectUserList" resultMap="resultMap" >
 		select  <include refid="column_sql"/>
 		from t_sysuser_info
 	</select>
-
-
-
+ 	
+ 	
+ 	
  	<update id="updateUserPwdById" parameterClass="org.gb.vo.business.UserPwd">
- 		update t_sysuser_info
+ 		update t_sysuser_info 
  		set sysuser_updatedatetime = #updatePwdTime# ,
  		sysuser_pwd = #newPwd#
  		where sysuser_id = #userId#
  	</update>
-
+	
 	<!-- 根据id查询用户 -->
 	<select id="selectUserById" resultMap="resultMap" parameterClass="java.lang.String">
 		select  <include refid="column_sql"/>
 		from t_sysuser_info
 		where sysuser_id = #userId#
 	</select>
-
-
-
+	
+	
+	
 	<!-- 根据loginName查询user用户 -->
-	<select id="selectSysUserByloginName" resultMap="resultMap" parameterClass="SysUser">
+	<select id="selectSysUserByloginName" resultMap="resultMap" parameterClass="SysUser"> 
 		select  <include refid="column_sql"/>
 		from t_sysuser_info
 		<dynamic prepend="where">
@@ -68,45 +68,15 @@
 			</isNotEmpty>
 		</dynamic>
 	</select>
-
+	
 	<!-- 注册新增用户 -->
 	<insert id="insertSysUser" parameterClass="SysUser">
 		insert into
 		 t_sysuser_info (sysuser_id,sysuser_loginname,sysuser_pwd  )
 		 values (  #id#,#loginname#,#pwd#)
 	</insert>
-
+	
 	
 	
   			
-
-	<!-- 根据loginName查询user用户 -->
-	<select id="selectSysUserByloginName" resultMap="resultMap" parameterClass="SysUser">
-		select  <include refid="column_sql"/>
-		from t_sysuser_info
-		<dynamic prepend="where">
-			<isNotEmpty property="loginname" >
-				sysuser_loginname = #loginname#
-			</isNotEmpty>
-		</dynamic>
-	</select>
-
-	<!-- 注册新增用户 -->
-	<insert id="insertSysUser" parameterClass="SysUser">
-		insert into
-		t_sysuser_info (sysuser_id,sysuser_loginname,sysuser_pwd  )
-		values (  #id#,#loginname#,#pwd#)
-	</insert>
-
-	<!--查询总数-->
-	<select id="selectUserCount" resultClass="java.lang.Integer" >
-		select count(1) from t_sysuser_info
-	</select>
-
-	<!--查询用户列表-->
-	<select id="selectUserList" resultMap="resultMap" >
-		select  <include refid="column_sql"/>
-		from t_sysuser_info
-	</select>
-
 </sqlMap>

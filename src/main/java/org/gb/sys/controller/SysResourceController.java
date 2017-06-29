@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.gb.sys.service.SysResourceService;
 import org.gb.sys.service.SysRoleResourceService;
+import org.gb.util.ConfigUtil;
 import org.gb.vo.SysResource;
 import org.gb.vo.SysRole;
 import org.gb.vo.SysRoleResource;
+import org.gb.vo.business.SessionInfo;
 import org.gb.vo.business.Tree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -138,5 +140,25 @@ public class SysResourceController {
 		prarentNode.setChildren(childList);
 
 	}
+
+
+	/**
+	 * 左侧菜单tree  resourceType=0   菜单类型会显示在系统首页左侧菜单中
+	 * @return
+	 */
+	@RequestMapping("selectMainMenu")
+	@ResponseBody
+	public List<Tree> selectMainMenu(HttpServletRequest request){
+
+		SessionInfo sessionInfo =  (SessionInfo) request.getSession().getAttribute(ConfigUtil.getSessionInfoName());
+
+		String userId =  sessionInfo.getUser().getId();
+
+		List<Tree> treeList =  resourceService.selectMainMenu(userId);
+
+		return treeList;
+
+	}
+
 
 }
