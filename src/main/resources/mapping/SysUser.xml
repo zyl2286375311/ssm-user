@@ -31,14 +31,7 @@
  	
  	
  	
- 	<select id="selectUserCount" resultClass="java.lang.Integer" >
- 		select count(1) from t_sysuser_info
- 	</select>
 
- 	<select id="selectUserList" resultMap="resultMap" >
-		select  <include refid="column_sql"/>
-		from t_sysuser_info
-	</select>
 
 
 
@@ -69,27 +62,6 @@
 		</dynamic>
 	</select>
 
-	<!-- 注册新增用户 -->
-	<insert id="insertSysUser" parameterClass="SysUser">
-		insert into
-		 t_sysuser_info (sysuser_id,sysuser_loginname,sysuser_pwd  )
-		 values (  #id#,#loginname#,#pwd#)
-	</insert>
-
-	
-	
-  			
-
-	<!-- 根据loginName查询user用户 -->
-	<select id="selectSysUserByloginName" resultMap="resultMap" parameterClass="SysUser">
-		select  <include refid="column_sql"/>
-		from t_sysuser_info
-		<dynamic prepend="where">
-			<isNotEmpty property="loginname" >
-				sysuser_loginname = #loginname#
-			</isNotEmpty>
-		</dynamic>
-	</select>
 
 	<!-- 注册新增用户 -->
 	<insert id="insertSysUser" parameterClass="SysUser">
@@ -108,5 +80,6 @@
 		select  <include refid="column_sql"/>
 		from t_sysuser_info
 	</select>
+
 
 </sqlMap>

@@ -19,7 +19,8 @@ public class SysRoleServiceImpl implements SysRoleService {
 
 	@Autowired
 	private SysRoleDao sysRoleDao;
-@Override
+
+	@Override
     public PageUtil<SysRole> selectRoleList(PageUtil<SysRole> rolePage) {
     	return null;
     }
@@ -43,13 +44,4 @@ public class SysRoleServiceImpl implements SysRoleService {
 		});
 		return roleList;
 	}
-
-	@Override
-	public PageUtil<SysRole> selectRoleList(PageUtil<SysRole> rolePage) {
-		return sysRoleDao.selectRoleList(rolePage);
-	}
-
-
-
-
 }

@@ -27,11 +27,7 @@
  		id,name,description,iconCls,seq,updatedatetime,createdatetime
  	</sql>
 
-	<!--查询角色id,角色名称  -->
-	<select id="selectRoleList" resultMap="resultMap">
-		select <include refid="column_sql"/> from
-		t_sysrole_info
-	</select>
+
 
 
 	<!-- 拼接查询条件 -->
