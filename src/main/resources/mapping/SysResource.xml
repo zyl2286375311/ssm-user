@@ -79,6 +79,70 @@
 
 
 
+	<!-- 字段 -->
+	<sql id="search_sql">
+		t4.id,t4.name,t4.url,t4.iconCls,t4.seq,t4.pid
+	</sql>
+
+	<!-- 结果集 -->
+	<resultMap class="SysResource" id="resultMap2">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="url" column="url"/>
+		<result property="iconCls" column="iconCls"/>
+		<result property="seq" column="seq"/>
+		<result property="pid" column="pid"/>
+	</resultMap>
+
+	<!--查询  resourceList集合 -->
+	<select id="selectResourceList" resultMap="resultMap" parameterClass="SysResource">
+		select <include refid="column_sql"/>
+		from
+		t_sysresource_info
+		<dynamic prepend="where" >
+			<isNotEmpty prepend="and" property="pid">
+				pid = #pid#
+			</isNotEmpty>
+			<isEmpty prepend="and" property="pid">
+				pid is null
+			</isEmpty>
+		</dynamic>
+	</select>
+
+	<!-- 根据用户id查询拥有的 左侧菜单 tree  resourcetypeId为0 -->
+	<select id="selectResourceByUserId" resultMap="resultMap2" parameterClass="java.lang.String" >
+		select <include refid="search_sql"/>
+		from
+		t_sysuser_info t1
+		join t_sysuser_sysrole_info t2
+		on t1.sysuser_id = t2.sysuser_id
+		join t_sysrole_sysresource_info t3
+		on t2.sysrole_id = t3.sysrole_id
+		join t_sysresource_info t4
+		on t3.sysresource_id = t4.id
+		where t1.sysuser_id = #userId#
+	</select>
+
+
+
+	<!-- 根据用户id查询拥有的 左侧菜单 tree  resourcetypeId为0 -->
+	<select id="selectMainMenu" resultMap="resultMap2" parameterClass="java.util.Map" >
+		select <include refid="search_sql"/>
+		from
+		t_sysuser_info t1
+		join t_sysuser_sysrole_info t2
+		on t1.sysuser_id = t2.sysuser_id
+		join t_sysrole_sysresource_info t3
+		on t2.sysrole_id = t3.sysrole_id
+		join t_sysresource_info t4
+		on t3.sysresource_id = t4.id
+		where t1.sysuser_id = #userId#
+		and t4.resourcetypeId = #resourceTypeId#
+	</select>
+
+
+
+
 	<!-- 查询菜单url资源 tree -->
 	<select id="selectResourceTree" resultMap="resultMap" parameterClass="SysResource" >
 		select  <include refid="column_sql"/>

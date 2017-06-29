@@ -24,27 +24,46 @@
  	
  	<!--批量新增   用户角色信息  -->
  	<insert id="insertUserRoleList" parameterClass="java.util.ArrayList">
- 		insert into t_sysuser_sysrole_info  (<include refid="column_sql"/>) 
- 		values 
+ 		insert into t_sysuser_sysrole_info  (<include refid="column_sql"/>)
+ 		values
  			<iterate  conjunction=",">
 	 			(
 	 				#userRoleList[].sysUserId#,
-					#userRoleList[].sysRoleId# 
+					#userRoleList[].sysRoleId#
 				)
  			</iterate>
  	</insert>
- 	
+
  	<!-- 根据用户id删除 用户角色信息 -->
  	<delete id="deleteUserRoleByUserId" parameterClass="SysUser" >
  		delete from t_sysuser_sysrole_info 	where sysuser_id = #id#
  	</delete>
- 	
- 	<!-- 根据用户id 查询用户角色信息 -->
- 	<select id="getUserRoleList" resultMap="resultMap" parameterClass="SysUser">
- 		select <include refid="column_sql"/>
+
+	<!--批量新增   用户角色信息  -->
+	<insert id="insertUserRoleList" parameterClass="java.util.ArrayList" >
+		insert into t_sysuser_sysrole_info  (<include refid="column_sql"/>)
+		values
+		<iterate  conjunction=",">
+			(
+			#userRoleList[].sysUserId#,
+			#userRoleList[].sysRoleId#
+			)
+		</iterate>
+	</insert>
+
+	<!-- 根据用户id删除 用户角色信息 -->
+	<delete id="deleteUserRoleByUserId" parameterClass="SysUser" >
+		delete from t_sysuser_sysrole_info 	where sysuser_id = #id#
+	</delete>
+
+	<!-- 根据用户id 查询用户角色信息 -->
+	<select id="getUserRoleList" resultMap="resultMap"  parameterClass="SysUser">
+		select <include refid="column_sql"/>
 		from t_sysuser_sysrole_info 	where sysuser_id = #id#
- 	</select>
- 	
- 	
- 	
+	</select>
+
+
+
+
+
 </sqlMap>
