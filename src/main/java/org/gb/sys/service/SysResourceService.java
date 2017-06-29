@@ -8,4 +8,6 @@ public interface SysResourceService {
 
 
     List<SysResource> getResourceTree();
+
+    List<SysResource> selectResourceByUserId(String userId);
 }

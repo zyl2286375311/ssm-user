@@ -10,4 +10,6 @@ public interface SysResourceDao {
 
 
     List<SysResource> getResourceTree();
+
+    List<SysResource> selectResourceByUserId(String userId);
 }
