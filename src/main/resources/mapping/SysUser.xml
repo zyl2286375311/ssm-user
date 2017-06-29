@@ -28,6 +28,28 @@
  		sysuser_id,sysuser_name,sysuser_loginname,sysuser_pwd,sysuser_sex,
  		sysuser_age,sysuser_photo,sysuser_updatedatetime,sysuser_createdatetime
  	</sql>
+ 	
+ 	
+ 	
+
+
+
+
+ 	<update id="updateUserPwdById" parameterClass="org.gb.vo.business.UserPwd">
+ 		update t_sysuser_info
+ 		set sysuser_updatedatetime = #updatePwdTime# ,
+ 		sysuser_pwd = #newPwd#
+ 		where sysuser_id = #userId#
+ 	</update>
+
+	<!-- 根据id查询用户 -->
+	<select id="selectUserById" resultMap="resultMap" parameterClass="java.lang.String">
+		select  <include refid="column_sql"/>
+		from t_sysuser_info
+		where sysuser_id = #userId#
+	</select>
+
+
 
 	<!-- 根据loginName查询user用户 -->
 	<select id="selectSysUserByloginName" resultMap="resultMap" parameterClass="SysUser">
@@ -39,6 +61,7 @@
 			</isNotEmpty>
 		</dynamic>
 	</select>
+
 
 	<!-- 注册新增用户 -->
 	<insert id="insertSysUser" parameterClass="SysUser">
@@ -57,5 +80,6 @@
 		select  <include refid="column_sql"/>
 		from t_sysuser_info
 	</select>
+
 
 </sqlMap>

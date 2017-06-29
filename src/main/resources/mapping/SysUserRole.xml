@@ -21,6 +21,7 @@
  	<sql id="column_sql">
  		sysuser_id , sysrole_id
  	</sql>
+ 	
 
 	<!--批量新增   用户角色信息  -->
 	<insert id="insertUserRoleList" parameterClass="java.util.ArrayList" >
@@ -44,6 +45,9 @@
 		select <include refid="column_sql"/>
 		from t_sysuser_sysrole_info 	where sysuser_id = #id#
 	</select>
- 	
- 	
+
+
+
+
+
 </sqlMap>

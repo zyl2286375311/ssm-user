@@ -24,7 +24,15 @@
  		id,name,description,updatedatetime,createdatetime
  	</sql>
 	
-
+	<!-- 根据loginName查询user用户 -->
+<!-- 	<select id="selectMai" resultMap="resultMap" parameterClass="SysResourceType"> 
+		select  <include refid="column_sql"/>
+		from t_sysresource_info
+		where resourcetypeId = '0';
+		</dynamic>
+	</select>  -->
+	
+	
 	
 	
   			

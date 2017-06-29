@@ -23,6 +23,31 @@
  	</sql>
  	
  	
+ 	<!--批量新增   角色权限资源信息  -->
+ 	<insert id="insertRoleResourceList" parameterClass="java.util.ArrayList">
+ 		insert into t_sysrole_sysresource_info  (<include refid="column_sql"/>) 
+ 		values 
+ 			<iterate  conjunction="," >
+ 				(
+	 				#roleResourceList[].sysResourceId#,
+					#roleResourceList[].sysRoleId# 
+					)
+ 			</iterate>
+ 	</insert>
+ 		
+ 	<!-- 根据角色id删除 角色权限资源信息 -->
+ 	<delete id="deleteRoleResourceByRoleId" parameterClass="java.lang.String" >
+ 		delete from t_sysrole_sysresource_info where sysrole_id = #sysRoleId#
+ 	</delete>
+ 	 	
+ 	<!-- 根据角色id 查询角色资源权限信息 -->
+ 	<select id="getResourceByRoleId" resultMap="resultMap" parameterClass="SysRole">
+ 		select <include refid="column_sql"/>
+		from t_sysrole_sysresource_info 	where sysrole_id = #id#
+ 	</select>
+ 	
+
+ 
 
  	
  	

@@ -244,12 +244,7 @@
 		return str;
 };
 
-	
-	
-	
-	
-	
-	
+
 	</script>
 </body>
 </html>
